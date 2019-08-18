@@ -1,0 +1,24 @@
+<div class="todo container">
+  <div class="header mt-5">
+    <h1 class="title">To-Do App!</h1>
+    <h5 class="subtitle">Add New To-Do</h5>
+  </div>
+  <div class="input mt-3">
+    <div class="input-group mb-3">
+      <input (keyup.enter)="addTask()" [(ngModel)]="taskInput" type="text" class="form-control p-4" placeholder="Enter new task">
+      <div class="input-group-append">
+        <button (click)="addTask()" class="btn btn-success">
+          <fa [name]="'plus'" class="mr-2"></fa> Add
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="task-panel">
+    <ul *ngIf="tasks !== undefined && tasks != null && tasks.length > 0" class="list-group">
+      <li *ngFor="let task of tasks" class="list-group-item">{{task.taskLabel}} <a (click)="deleteTask(task.id)" class="pull-right">
+          <fa [name]="'trash'"></fa>
+        </a></li>
+    </ul>
+    <div *ngIf="tasks === undefined || tasks == null || tasks.length <= 0" class="alert alert-warning"><fa class="mr-2" [name]="'info-circle'"></fa><strong>Task Empty.</strong> Please add new task from input above.</div>
+  </div>
+</div>
